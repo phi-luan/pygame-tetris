@@ -1,7 +1,7 @@
 import pygame
 from sys import exit
 from board import Board
-from i_block import I_Block
+from blocks.i_block import I_Block
 
 import constants as const
 

@@ -1,5 +1,5 @@
 import pygame
-from unit import Unit
+from .unit import Unit
 
 import constants as const
 

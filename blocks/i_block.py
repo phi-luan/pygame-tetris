@@ -1,5 +1,5 @@
-from block import Block
-from unit import Unit
+from .block import Block
+from .unit import Unit
 
 import constants as const
 class I_Block(Block):
