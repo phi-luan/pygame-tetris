@@ -8,17 +8,17 @@ class Block:
         self.units = pygame.sprite.Group()
         self.color = color
 
-    def move(self, direction):
+    def move(self, board, direction, next_frame_event):
         if direction == 'left':
             for unit in self.units:
-                if unit.rect.left <= const.GRID_START_X:
+                if unit.rect.left <= const.GRID_START_X or self.has_collided(board, next_frame_event):
                     return
             for unit in self.units:
                 unit.rect.x -= const.BLOCK_SIZE
                 unit.x -= const.BLOCK_SIZE
-        elif direction == 'right':
+        elif direction == 'right' :
             for unit in self.units:
-                if unit.rect.right >= const.GRID_END_X:
+                if unit.rect.right >= const.GRID_END_X or self.has_collided(board, next_frame_event):
                     return
             for unit in self.units:
                 unit.rect.x += const.BLOCK_SIZE
@@ -28,15 +28,19 @@ class Block:
                 unit.rect.y += const.BLOCK_SIZE
                 unit.y += const.BLOCK_SIZE
 
-    def check_collision(self, next_frame_event) -> bool:
+    def has_collided(self, board, next_frame_event) -> bool:
         for unit in self.units:
-            if unit.convert_to_coordinates()[1] == const.BOARD_HEIGHT:
+            i,j = unit.convert_to_coordinates()
+            if j == const.BOARD_HEIGHT:
+                pygame.time.set_timer(next_frame_event, 0)
+                return True
+            elif board.coordinates[j][i][0]:
                 pygame.time.set_timer(next_frame_event, 0)
                 return True
         return False
 
     def update_unit_coordinates(self, board, next_frame_event):
-        if not self.check_collision(next_frame_event):
+        if not self.has_collided(board, next_frame_event):
             for block in self.units:
                 block.fall()
         else:

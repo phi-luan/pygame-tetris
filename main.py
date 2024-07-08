@@ -30,11 +30,11 @@ def check_user_input(current_block, board, next_frame_event):
             current_block.update_unit_coordinates(board, next_frame_event)
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                current_block.move('left')
+                current_block.move(board, 'left', next_frame_event)
             elif event.key == pygame.K_RIGHT:
-                current_block.move('right')
+                current_block.move(board, 'right', next_frame_event)
             elif event.key == pygame.K_DOWN:
-                current_block.move('down')
+                current_block.move(board, 'down', next_frame_event)
 
 def main():
     global SCREEN, CLOCK
