@@ -21,20 +21,20 @@ def update_main_interface(board):
     SCREEN.fill(const.BLACK)
     draw_grid(board)
 
-def check_user_input(current_block, board, next_frame_event):
+def check_user_input(current_block, board):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        elif event.type == next_frame_event:
-            current_block.update_unit_coordinates(board, next_frame_event)
+        elif event.type == current_block.next_frame_event:
+            current_block.update_frame(board)
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                current_block.move(board, 'left', next_frame_event)
+                current_block.move_left(board)
             elif event.key == pygame.K_RIGHT:
-                current_block.move(board, 'right', next_frame_event)
+                current_block.move_right(board)
             elif event.key == pygame.K_DOWN:
-                current_block.move(board, 'down', next_frame_event)
+                current_block.move_down(board)
 
 def main():
     global SCREEN, CLOCK
@@ -47,11 +47,8 @@ def main():
     board = Board()
     current_block = I_Block()
    
-    next_frame_event = pygame.USEREVENT + 1
-    pygame.time.set_timer(next_frame_event, 500)
-
     while True:
-        check_user_input(current_block, board, next_frame_event)
+        check_user_input(current_block, board)
         update_main_interface(board)
         if current_block.units == None:
             current_block = I_Block()

@@ -6,7 +6,5 @@ class Board:
 
     def add_block(self, block):
         for unit in block.units:
-            i = unit.convert_to_coordinates()[0]
-            j = unit.convert_to_coordinates()[1] - 1
-            self.coordinates[j][i] = (True, block.color)
+            self.coordinates[unit.index_j][unit.index_i] = (True, block.color)
         
