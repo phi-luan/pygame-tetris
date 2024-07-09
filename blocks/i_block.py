@@ -8,6 +8,6 @@ class I_Block(Block):
         self.first = Unit(4, 0, const.BLUE)
         self.second = Unit(4, 1, const.BLUE)
         self.third = Unit(4, 2, const.BLUE)
-        self.forth = Unit(4, 3, const.BLUE)
+        self.fourth = Unit(4, 3, const.BLUE)
         
-        self.units.add(self.first, self.second, self.third, self.forth)
+        self.units.add(self.first, self.second, self.third, self.fourth)

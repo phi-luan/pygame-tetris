@@ -6,6 +6,9 @@ from blocks.i_block import I_Block
 import constants as const
 
 def draw_grid(board):
+
+    SCREEN.fill(const.BLACK)
+
     for x in range(const.GRID_START_X, const.GRID_END_X, const.BLOCK_SIZE):
         for y in range(const.GRID_START_Y, const.GRID_END_Y, const.BLOCK_SIZE):
             i, j = ((x - const.GRID_START_X) // const.BLOCK_SIZE, (y - const.GRID_START_Y) // const.BLOCK_SIZE)
@@ -15,11 +18,7 @@ def draw_grid(board):
                 pygame.draw.rect(SCREEN, color, (x, y, const.BLOCK_SIZE, const.BLOCK_SIZE))
             else:
                 rect = pygame.Rect(x, y, const.BLOCK_SIZE, const.BLOCK_SIZE)
-                pygame.draw.rect(SCREEN, const.WHITE, rect, 1)
-
-def update_main_interface(board):
-    SCREEN.fill(const.BLACK)
-    draw_grid(board)
+                pygame.draw.rect(SCREEN, const.WHITE, rect, 1)   
 
 def check_user_input(current_block, board):
     for event in pygame.event.get():
@@ -49,7 +48,7 @@ def main():
    
     while True:
         check_user_input(current_block, board)
-        update_main_interface(board)
+        draw_grid(board)
         if current_block.units == None:
             current_block = I_Block()
         current_block.draw(SCREEN)

@@ -24,4 +24,4 @@ class Unit(pygame.sprite.Sprite):
     #     return ((self.x - const.GRID_START_X) // const.BLOCK_SIZE, (self.y - const.GRID_START_Y) // const.BLOCK_SIZE)
 
     def __str__(self) -> str:
-        return f'{self.convert_to_coordinates()}'
+        return f'{(self.index_i, self.index_j)}'

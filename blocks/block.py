@@ -45,28 +45,35 @@ class Block:
         if (not self.has_collided(board)):
             for unit in self.units:
                 unit.rect.y += const.BLOCK_SIZE
-        else:
+        else: 
             for unit in self.units:
                 unit.index_j -= 1
 
+    def fall(self):
+        for unit in self.units:
+            unit.index_j += 1
+            unit.rect.y += const.BLOCK_SIZE
+
     def has_collided(self, board) -> bool:
         for unit in self.units:
-            if unit.index_j == const.BOARD_HEIGHT or board.coordinates[unit.index_j][unit.index_i][0] == True :
+            # check if the block has touched the ground
+            if unit.index_j >= const.BOARD_HEIGHT - 1:
                 return True
-            elif 0 >= unit.index_i >= 19:
+            # check if the block has touched the side borders
+            elif unit.index_i < 0 or unit.index_i > 9:
+                return True
+            # check if the block has touched an another block
+            elif board.coordinates[unit.index_j + 1][unit.index_i][0]:
                 return True
         return False
    
     def update_frame(self, board):
-        if (not self.has_collided(board)):
-            self.move_down(board)
-    
+        if not self.has_collided(board):
+            self.fall()
         else:
             pygame.time.set_timer(self.next_frame_event, 0)
             board.add_block(self)
-            pygame.time.set_timer(self.next_frame_event, 500)
-            self.units = None
-        
+            self.units = None  # Careful: ensure this is the right approach to "deactivate" the current block
 
     def draw(self, surface):
         self.units.draw(surface)
