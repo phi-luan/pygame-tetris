@@ -4,10 +4,10 @@ from .unit import Unit
 import constants as const
 class I_Block(Block):
     def __init__(self):
-        super().__init__(const.BLUE)
-        self.first = Unit(4, 0, const.BLUE)
-        self.second = Unit(4, 1, const.BLUE)
-        self.third = Unit(4, 2, const.BLUE)
-        self.fourth = Unit(4, 3, const.BLUE)
+        super().__init__(const.CYAN)
+        first = Unit([4, 0], const.CYAN)
+        second = Unit([4, 1], const.CYAN)
+        third = Unit([4, 2], const.CYAN)
+        fourth = Unit([4, 3], const.CYAN)
         
-        self.units.add(self.first, self.second, self.third, self.fourth)
+        self.units.add(first, second, third, fourth)

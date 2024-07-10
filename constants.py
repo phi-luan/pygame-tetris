@@ -7,7 +7,13 @@ BOARD_HEIGHT = 20
 # Colors
 BLACK = (20, 20, 20)
 WHITE = (200, 200, 200)
-BLUE = (0, 128, 255)
+GREEN = (2, 231, 71)
+CYAN  = (0, 128, 255)
+BLUE  = (0, 43, 255)
+ORANGE = (255, 156, 51)
+RED   = (231, 0 ,0)
+YELLOW = (231, 224, 0)
+PURPLE = (104, 0, 255)
 
 # Block size and grid positioning
 BLOCK_SIZE = 30
