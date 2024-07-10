@@ -11,3 +11,6 @@ class L_Block(Block):
         fourth = Unit([5, 2], const.BLUE)
         
         self.units.add(first, second, third, fourth)
+
+    def get_still_image(self):
+        return [[(True, const.BLUE) if (i == 0 and j != 3) or (j == 2) else (False, const.WHITE) for i in range(2) ] for j in range(4)]

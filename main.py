@@ -14,7 +14,7 @@ from blocks.z_block import Z_Block
 
 import constants as const
 
-def draw_grid(board):
+def draw_interface(board, next_block):
 
     SCREEN.fill(const.BLACK)
 
@@ -28,6 +28,47 @@ def draw_grid(board):
             else:
                 rect = pygame.Rect(x, y, const.BLOCK_SIZE, const.BLOCK_SIZE)
                 pygame.draw.rect(SCREEN, const.WHITE, rect, 1)   
+    
+    write_text()
+    draw_next_interface(next_block)
+    
+
+def draw_next_interface(next_block):
+    next_start_x = const.GRID_END_X + 30
+    next_end_x = const.GRID_END_X + 90
+    next_start_y = const.GRID_START_Y
+    next_end_y = const.GRID_START_Y + 120
+    
+    still_image = next_block.get_still_image()
+    for x in range(next_start_x, next_end_x, const.BLOCK_SIZE):
+        for y in range(next_start_y, next_end_y, const.BLOCK_SIZE):
+            i, j = ((x - next_start_x) // const.BLOCK_SIZE, (y - next_start_y) // const.BLOCK_SIZE)
+            filled, color = still_image[j][i]
+            
+            if filled:
+                pygame.draw.rect(SCREEN, color, (x, y, const.BLOCK_SIZE, const.BLOCK_SIZE))
+            else:
+                rect = pygame.Rect(x, y, const.BLOCK_SIZE, const.BLOCK_SIZE)
+                pygame.draw.rect(SCREEN, const.WHITE, rect, 1) 
+
+            
+              
+
+
+    # HOLD interface
+    for x in range(const.GRID_START_X - 90, const.GRID_START_X - 30, const.BLOCK_SIZE):
+        for y in range(const.GRID_START_Y, const.GRID_START_Y + 120, const.BLOCK_SIZE):
+            rect = pygame.Rect(x, y, const.BLOCK_SIZE, const.BLOCK_SIZE)
+            pygame.draw.rect(SCREEN, const.WHITE, rect, 1) 
+
+def write_text():
+    text_font = pygame.font.Font("font/Pixeltype.ttf", 43)
+    next_message = text_font.render(f'NEXT', False, const.WHITE)
+    next_message_rect = next_message.get_rect(bottomleft=(const.GRID_END_X + 30, const.GRID_START_Y))
+    hold_message = text_font.render(f'HOLD', False, const.WHITE)
+    hold_message_rect = next_message.get_rect(bottomleft=(const.GRID_START_X - 90, const.GRID_START_Y))
+    SCREEN.blit(next_message, next_message_rect)
+    SCREEN.blit(hold_message, hold_message_rect)
 
 def check_user_input(current_block, board):
     for event in pygame.event.get():
@@ -57,14 +98,18 @@ def main():
     board = Board()
     blocks = [I_Block, L_Block, J_Block, O_Block, T_Block, S_Block, Z_Block]
     current_block = choice(blocks)()
+    next_block = choice(blocks)()
    
     while True:
         check_user_input(current_block, board)
-        draw_grid(board)
+        draw_interface(board, next_block)
 
         if current_block.is_settled:
-            current_block = choice(blocks)()
+            current_block = next_block
+            next_block = choice(blocks)()
+            
             pygame.time.set_timer(current_block.next_frame_event, 400)
+
 
         current_block.draw(SCREEN)
         pygame.display.update()
