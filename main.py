@@ -118,8 +118,6 @@ def check_user_input(current_block, block_held, hold_allowed, board):
 
     return current_block, block_held, hold_allowed
 
-                
-
 def main():
     global SCREEN, CLOCK
     pygame.init()
