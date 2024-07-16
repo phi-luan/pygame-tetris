@@ -4,6 +4,7 @@ import pygame
 class Board:
     def __init__(self) -> None:
         self.coordinates = [[(False, const.WHITE) for i in range(const.BOARD_WIDTH)] for j in range(const.BOARD_HEIGHT)]
+        self.line_counter = 0
         self.line_clear_sound = pygame.mixer.Sound('audio/clear.wav')
         self.line_clear_sound.set_volume(0.7)
 
@@ -21,7 +22,15 @@ class Board:
                         self.coordinates[k] = self.coordinates[k - 1][:]
                     self.coordinates[0] = [(False, const.WHITE) for _ in range(const.BOARD_WIDTH)]
             
-                print(len(full_lines))
+                if len(full_lines) == 1:
+                     self.line_counter += 100
+                elif len(full_lines) == 2:
+                     self.line_counter += 300
+                elif len(full_lines) == 3:
+                     self.line_counter += 500
+                else:
+                     self.line_counter += 800
+                
                 self.line_clear_sound.play()
     
     def is_end_game(self):

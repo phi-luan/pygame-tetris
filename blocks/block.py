@@ -100,6 +100,7 @@ class Block:
     def update_frame(self, board):
         if not self.has_collided(board):
             self.fall()
+            board.line_counter += 1
         else:
             board.add_block(self)
             self.delete()

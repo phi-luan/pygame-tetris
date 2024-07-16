@@ -30,7 +30,7 @@ def draw_game_interface(board, next_block, block_held):
                 rect = pygame.Rect(x, y, const.BLOCK_SIZE, const.BLOCK_SIZE)
                 pygame.draw.rect(SCREEN, const.WHITE, rect, 1)   
     
-    write_text()
+    write_text(board)
     draw_next_interface(next_block)
     draw_hold_interface(block_held)
     
@@ -78,14 +78,19 @@ def draw_hold_interface(block_held):
                     rect = pygame.Rect(x, y, const.BLOCK_SIZE, const.BLOCK_SIZE)
                     pygame.draw.rect(SCREEN, const.WHITE, rect, 1) 
                        
-def write_text():
+def write_text(board):
     text_font = pygame.font.Font("font/Pixeltype.ttf", 43)
     next_message = text_font.render(f'NEXT', False, const.WHITE)
     next_message_rect = next_message.get_rect(bottomleft=(const.GRID_END_X + 30, const.GRID_START_Y))
     hold_message = text_font.render(f'HOLD', False, const.WHITE)
     hold_message_rect = next_message.get_rect(bottomleft=(const.GRID_START_X - 90, const.GRID_START_Y))
+
+    line_count_message = text_font.render(f'{board.line_counter} points', False, const.WHITE)
+    line_count_message_rect = line_count_message.get_rect(bottomleft=(const.GRID_END_X + 30, const.GRID_END_X/2))
+    
     SCREEN.blit(next_message, next_message_rect)
     SCREEN.blit(hold_message, hold_message_rect)
+    SCREEN.blit(line_count_message, line_count_message_rect)
 
 def hold(current_block, block_held):
     if block_held == None:
@@ -200,7 +205,7 @@ def main():
             CLOCK.tick(60)
         
         game_active, board, show_press_message = draw_menu_interface(blink, show_press_message)
-        
+             
 
 if __name__ == "__main__":
     main()
