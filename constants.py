@@ -15,6 +15,8 @@ RED   = (231, 0 ,0)
 YELLOW = (231, 224, 0)
 PURPLE = (104, 0, 255)
 
+COLORS = [GREEN, CYAN, BLUE, ORANGE, RED, YELLOW, PURPLE]
+
 # Block size and grid positioning
 BLOCK_SIZE = 30
 GRID_START_X = 350
