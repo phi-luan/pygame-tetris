@@ -115,6 +115,7 @@ def check_user_input(current_block, block_held, hold_allowed, board, turn_right_
                 current_block.move_right(board)
             elif event.key == pygame.K_DOWN:
                 current_block.move_down(board)
+                board.line_counter += 2
             elif event.key == pygame.K_UP:
                 current_block.rotate_right(board)
                 turn_right_sound.play()
