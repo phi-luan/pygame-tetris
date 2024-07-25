@@ -24,12 +24,13 @@ This is a classic Tetris game implemented in Python using the Pygame library. Th
 - **audio/**: Contains sound files used in the game.
 
 ## Controls
-**Left Arrow Key**: Move the block left.
-**Right Arrow Key**: Move the block right.
-**Down Arrow Key**: Move the block down faster.
-**Up Arrow Key**: Rotate the block clockwise.
-**E Key**: Hold the current block and swap it with the held block.
-**Enter Key**: Start the game from the main menu.
+
+- **Left Arrow Key**: Move the block left.
+- **Right Arrow Key**: Move the block right.
+- **Down Arrow Key**: Move the block down faster.
+- **Up Arrow Key**: Rotate the block clockwise.
+- **E Key**: Hold the current block and swap it with the held block.
+- **Enter Key**: Start the game from the main menu.
 
 ![Screenshot 2024-07-16 003727](https://github.com/user-attachments/assets/c35f4a2a-58f7-4390-91fa-83ddb5daf5b1)
 
