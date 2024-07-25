@@ -1,8 +1,35 @@
-# Tetris
-This is a personal project. I wanted to challenge myself and create a single player tetris game with pygame and my actual knowledge of OOP and Python.
+# Tetris Game
 
-I only implemented the basic mechanics of the game.
-To play, you need to use the arrow to move the block (Right, Left, Down) and the UP key to rotate your block (to the right only). You can also hold your block by pressing E
+## Introduction
+
+This is a classic Tetris game implemented in Python using the Pygame library. The game features traditional Tetris gameplay with additional features like block holding and next block preview.
+
+## Features
+
+- Classic Tetris gameplay
+- Hold and swap blocks
+- Next block preview
+- Scoring system
+- Sound effects and background music
+
+## Project Structure
+
+- **main.py**: Main script that initializes and runs the game.
+- **board.py**: Contains the `Board` class to manage the game grid and block placement.
+- **blocks/**: Directory containing different block classes.
+  - **block.py**: Base class for all blocks.
+  - **i_block.py**, **l_block.py**, etc.: Specific implementations for each block type.
+- **constants.py**: Defines constants used throughout the game.
+- **font/**: Contains the font files used in the game.
+- **audio/**: Contains sound files used in the game.
+
+## Controls
+**Left Arrow Key**: Move the block left.
+**Right Arrow Key**: Move the block right.
+**Down Arrow Key**: Move the block down faster.
+**Up Arrow Key**: Rotate the block clockwise.
+**E Key**: Hold the current block and swap it with the held block.
+**Enter Key**: Start the game from the main menu.
 
 ![Screenshot 2024-07-16 003727](https://github.com/user-attachments/assets/c35f4a2a-58f7-4390-91fa-83ddb5daf5b1)
 
